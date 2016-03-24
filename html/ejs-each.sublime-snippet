@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+<% (${1}||[]).forEach(function(${2},i){ %>
+${3}
+<% }) %>
+]]></content>
+	<tabTrigger>eeach</tabTrigger>
+	<scope>text.html.basic</scope>
+</snippet>

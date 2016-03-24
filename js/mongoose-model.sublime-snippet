@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+var mongoose = require('mongoose');
+
+var ${1}Model = function() {
+
+    var ${1}Schema = mongoose.Schema({
+        ${3}: String, 
+		${4}
+    });
+
+    return mongoose.model('${2}', ${1}Schema, '${1}');
+};
+
+module.exports = new ${1}Model();
+
+]]></content>
+	<tabTrigger>mmodel</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

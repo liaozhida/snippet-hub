@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+<% if(${1}) { %>
+${2}
+<% } %>
+]]></content>
+	<tabTrigger>eif</tabTrigger>
+	<scope>text.html.basic</scope>
+</snippet>

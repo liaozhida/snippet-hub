@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+
+	router.post('/${1}', ${2} function(req, res) {
+		var _p = req.params || {};
+		var _b = req.body || {};
+		${4}
+		res.send('ok');
+	});
+
+]]></content>
+	<tabTrigger>rp</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

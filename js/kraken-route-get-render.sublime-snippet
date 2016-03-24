@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+
+	router.get('/${1}', ${2} function(req, res) {
+		var _q = req.query || {};
+		var _p = req.params || {};
+		${4}
+		res.render('${3}');
+	});
+
+]]></content>
+	<tabTrigger>rgr</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

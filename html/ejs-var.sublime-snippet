@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+<% var ${1}=${2}; %>
+]]></content>
+	<tabTrigger>evar</tabTrigger>
+	<scope>text.html.basic</scope>
+</snippet>
