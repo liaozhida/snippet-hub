@@ -11,7 +11,11 @@ sublime的代码片段工具
 	cd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/sublime-snippet
 	git pull
 
-3. 如何定义一个snippet
+3. 使用
+
+	进入相关的文件，注意sublime右下角的文件内容必须为(javascript、html)，输入快捷键,然后按tab键(或者回车)即可。
+
+4. 如何定义一个snippet
 
 	```
 	文件名必须以.sublime-snippet结尾，该文件为kraken-route-get-render.sublime-snippet
@@ -29,7 +33,7 @@ sublime的代码片段工具
 	</snippet>
 	```
 
-4. 当你也想添加自己的snippet的时候
+5. 当你也想添加自己的snippet的时候
 
 	* 你可以在该项目的 [Issues](http://gitlab.umiit.cn/tool/sublime-snippet/issues) 中new issues,写清楚相关需求
 	* 将该项目clone到本地，然后新建一个分支，分支名为[issues的编号-snippet的名称]，然后编写代码，将该分支推送到服务器
