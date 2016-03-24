@@ -4,12 +4,17 @@ sublime的代码片段工具
 
 1. 安装(OSX + sublime text 2)
 	
-	git clone http://gitlab.umiit.cn/tool/sublime-snippet.git ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/sublime-snippet
+	```
+	cd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User
+	git clone http://gitlab.umiit.cn/tool/sublime-snippet.git
+	```
 
 2. 更新
 
+	```
 	cd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/sublime-snippet
 	git pull
+	```
 
 3. 使用
 
@@ -34,6 +39,7 @@ sublime的代码片段工具
 	```
 
 5. 当你也想添加自己的snippet的时候
+
 
 	* 你可以在该项目的 [Issues](http://gitlab.umiit.cn/tool/sublime-snippet/issues) 中new issues,写清楚相关需求
 	* 将该项目clone到本地，然后新建一个分支，分支名为[issues的编号-snippet的名称]，然后编写代码，将该分支推送到服务器
