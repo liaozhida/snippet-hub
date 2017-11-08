@@ -1,0 +1,35 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+
+
+@Configuration
+@ComponentScan
+@EnableScheduling
+@EnableAutoConfiguration
+class Application{
+	....
+}
+
+
+
+@Scheduled(fixedRate=1000)
+public void run() {
+    System.out.println("hello word");
+}
+
+
+
+
+	
+]]></content>
+	<tabTrigger>spb-fixed</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

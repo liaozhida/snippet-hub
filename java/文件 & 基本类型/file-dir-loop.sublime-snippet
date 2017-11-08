@@ -1,0 +1,24 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+// 遍历目录
+Path dir = Paths.get(CurrentPath.cur() + "IO");
+try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*")) {
+	for (Path entry : stream) {
+		System.out.println(entry.getFileName());
+	}
+} catch (IOException e) {
+	System.out.println(e.getMessage());
+}
+
+	
+]]></content>
+	<tabTrigger>file-dir-loop</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

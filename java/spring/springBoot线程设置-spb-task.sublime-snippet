@@ -1,0 +1,22 @@
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+	<task:annotation-driven />
+
+	<!-- 缺省的异步任务线程池 最小线程数20 超过最小线程数的 线程存放在队列中 超过队列最大值30 开启新的线程， 但是不超过50个 如果超过五十个则在调用者的线程中执行 -->
+	<task:executor id="redisExecutor" pool-size="1"
+		queue-capacity="30" rejection-policy="CALLER_RUNS" />
+
+
+	
+]]></content>
+	<tabTrigger>spb-task</tabTrigger>
+	<scope>text.xml</scope>
+</snippet>
+
+	
+

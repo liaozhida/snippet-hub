@@ -1,0 +1,122 @@
+
+<snippet>
+	<content><![CDATA[
+ 
+/**
+ * @param className
+ * @param object
+ * @return 对象的键值对
+ */
+public static Map<String, String> getKeyValue(Class className, Object object) {
+
+	Map<String, String> map = new HashMap<String, String>();
+	Method m[] = className.getMethods();
+	for (int i = 0; i < m.length; i++) {
+		String metName = m[i].getName();
+		// 找出有set方法的属性
+		if (metName.startsWith("set")) {
+			String filed = metName.substring(3);
+			try {
+				Method method = className.getMethod("get" + filed, null);
+				Object result = method.invoke(object, null);
+				if (result != null) {
+					filed = filed.substring(0, 1).toLowerCase() + filed.substring(1, filed.length());
+					map.put(filed, result + "");
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+	return map;
+}
+
+
+/**
+ * @param className
+ * @param object
+ * @return 对象的键值对
+ */
+public static List<String> getValue(Class className, Object object) {
+
+	List<String> lists = new LinkedList<String>();
+	Method m[] = className.getMethods();
+	for (int i = 0; i < m.length; i++) {
+		String metName = m[i].getName();
+		// 找出有set方法的属性
+		if (metName.startsWith("set")) {
+			String filed = metName.substring(3);
+			try {
+				Method method = className.getMethod("get" + filed, null);
+				Object result = method.invoke(object, null);
+				if (result != null) {
+					filed = filed.substring(0, 1).toLowerCase() + filed.substring(1, filed.length());
+					lists.add( (String)result);
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+	return lists;
+}
+
+/**
+ * @param className
+ * @param object
+ * @return 对象的键值对
+ */
+public static List<String> getValueWithNullStr(Class className, Object object) {
+
+	List<String> lists = new LinkedList<String>();
+	Method m[] = className.getMethods();
+	for (int i = 0; i < m.length; i++) {
+		String metName = m[i].getName();
+		// 找出有set方法的属性
+		if (metName.startsWith("set")) {
+			String filed = metName.substring(3);
+			try {
+				Method method = className.getMethod("get" + filed, null);
+				Object result = method.invoke(object, null);
+				if (result != null) {
+					filed = filed.substring(0, 1).toLowerCase() + filed.substring(1, filed.length());
+					lists.add( (String)result);
+				}else{
+					lists.add("null");
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+	return lists;
+}
+
+/**
+ * @param className
+ * @param object
+ * @return 对象的键
+ */
+public static List<String> getKeys(Class className) {
+
+	List<String> keys = new ArrayList<String>();
+	Method m[] = className.getMethods();
+	for (int i = 0; i < m.length; i++) {
+		String metName = m[i].getName();
+		// 找出有set方法的属性
+		if (metName.startsWith("set")) {
+			String filed = metName.substring(3);
+			keys.add(filed);
+		}
+	}
+	return keys;
+}
+ 
+
+	
+]]></content>
+	<tabTrigger>beanToMap</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

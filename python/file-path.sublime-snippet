@@ -1,0 +1,25 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+
+
+
+
+path = os.path.abspath(os.path.join(sys.path[0], '../'))
+
+
+
+
+
+	
+]]></content>
+	<tabTrigger>file-path</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	

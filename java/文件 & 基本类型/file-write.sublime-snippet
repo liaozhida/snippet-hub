@@ -1,0 +1,21 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+Path path = Paths.get("/Users/zhidaliao/foo.wr");
+BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+bw.write("liaozhida");
+bw.flush();
+ 
+
+	
+]]></content>
+	<tabTrigger>file-write</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

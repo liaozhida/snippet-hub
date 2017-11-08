@@ -1,0 +1,24 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+
+Path profile = Paths.get("/Users/zhidaliao/foo.log");
+Path profile2 = Paths.get("/Users/zhidaliao/foo5.log");
+// 默认不能覆盖已存在的文件 除非加上 REPLACE_EXISTING
+// 还有 ATOMIC_MOVE COPY_ATTRIBUTES
+Files.copy(profile, profile2, StandardCopyOption.REPLACE_EXISTING);
+
+
+
+	
+]]></content>
+	<tabTrigger>file-copy</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

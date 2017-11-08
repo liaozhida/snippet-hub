@@ -1,0 +1,25 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+
+
+
+
+def replace(replaceStr):
+	
+	file = open('demo.md').read()
+	pattern = re.compile(r"---(\n(.{0,}))*---")
+	print re.sub(pattern,replaceStr,file)
+
+
+
+	
+]]></content>
+	<tabTrigger>str-replace</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	

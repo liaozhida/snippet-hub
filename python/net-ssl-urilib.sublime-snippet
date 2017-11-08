@@ -1,0 +1,22 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+
+
+
+
+gcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)  
+info = urllib2.urlopen(req, context=gcontext).read()
+
+
+
+	
+]]></content>
+	<tabTrigger>net-ssl-urilib</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	

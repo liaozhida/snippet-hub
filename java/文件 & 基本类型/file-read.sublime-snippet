@@ -1,0 +1,29 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+Path path = Paths.get(pathStr);
+BufferedReader br = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+
+String lineStr;
+while ((lineStr = br.readLine()) != null) {
+	System.out.println(lineStr);
+}
+
+// 新版的读取
+List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+for(String str: lines){
+	System.out.println(str);
+}
+ 
+
+	
+]]></content>
+	<tabTrigger>file-read</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+

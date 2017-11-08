@@ -1,0 +1,38 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+
+@SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients
+@EnableDiscoveryClient
+@EnableCircuitBreaker
+@EnableHystrixDashboard
+@EnableAsync
+@RibbonClient(name = "yea-ribbon", configuration = ${2}.class)
+@ComponentScan(basePackages = { "${1}"  })
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+}
+   
+
+
+
+
+	
+]]></content>
+	<tabTrigger>spb-ipc-application</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	
+

@@ -1,0 +1,49 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+import java.io.IOException;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+
+/**
+ * Code for Listing 2_3 - You'll need to change the hardcoded path.
+ *
+ * 遍历目录树 主要方法walkFileTree ，需要实现 FileVisitor 接口 ， SimpleFileVisitor是一个简单的实现类
+ */
+public class Listing_2_3_LoopDir {
+
+	public static void main(String[] args) throws IOException {
+		Path startingDir = Paths.get("/Users/zhidaliao/git/yea-service");
+		Files.walkFileTree(startingDir, new FindJavaVisitor());
+	}
+
+	private static class FindJavaVisitor extends SimpleFileVisitor<Path> {
+
+		@Override
+		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+
+			if (file.toString().endsWith(".java")) {
+				System.out.println(file.getFileName());
+			}
+			
+			System.out.println("~~~~>" + file.toString());
+
+			return FileVisitResult.CONTINUE;
+		}
+	}
+}
+	
+]]></content>
+	<tabTrigger>file-dir-loop-interface</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

@@ -1,0 +1,34 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+
+
+@RestController
+@RequestMapping("/test")
+public class ${1} implements ApplicationContextAware {
+
+
+	public void setApplicationContext(ApplicationContext arg0) throws BeansException {
+		this.ac = arg0;
+	}
+
+	
+}
+
+
+
+
+
+
+	
+]]></content>
+	<tabTrigger>sp-applicationContext</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

@@ -1,0 +1,19 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+self._session = requests.session()
+res = self._session.post(self.postUrl, data=formdata, timeout=10)
+print res
+
+
+
+	
+]]></content>
+	<tabTrigger>net-session-request</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	

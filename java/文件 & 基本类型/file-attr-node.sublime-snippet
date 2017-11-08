@@ -1,0 +1,33 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+
+	// 读取文件属性
+	Map<String, Object> map = Files.readAttributes(zip, "*");
+	System.out.println(map);
+
+	// 读取文件 读写属性
+	PosixFileAttributes mm = Files.readAttributes(zip, PosixFileAttributes.class);
+	Set<PosixFilePermission> st = mm.permissions();
+	Iterator<PosixFilePermission> it = st.iterator();
+	while (it.hasNext()) {
+		PosixFilePermission pfp = it.next();
+		System.out.println(pfp.toString() + "~>" + pfp.ordinal() + "~> " + pfp.name());
+	}
+
+
+
+
+
+	
+]]></content>
+	<tabTrigger>file-attr-node</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

@@ -1,0 +1,70 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import cn.yeamoney.model.Ticket;
+import cn.yeamoney.model.common.PageListModelSecond;
+import cn.yeamoney.service.bean.TicketPageList;
+import cn.yeamoney.service.bean.TicketProfit;
+import cn.yeamoney.service.core.LogAspect;
+import cn.yeamoney.utils.Message;
+import cn.yeamoney.utils.Constant.MsgCode;
+
+import com.avaje.ebean.SqlRow;
+
+@FeignClient(value = "ticket-service", configuration = YeaFeignConfiguration.class, fallback = TicketClientHystrix.class)
+interface TicketClient {
+
+	@RequestMapping(method = RequestMethod.GET, value = "/{userId}/usableAmount")
+	Message<String> getUsabelAmount(@PathVariable("userId") String userId);
+
+	
+}
+
+/**
+ * @author zhidaliao
+ * 
+ *         错误处理
+ */
+@Component
+class TicketClientHystrix implements TicketClient {
+
+	private static final Logger logger = LoggerFactory.getLogger(TicketClientHystrix.class);
+
+	@Override
+	public Message<String> getUsabelAmount(String userId) {
+		logger.error("error,please check now! yea-service invoke tikcetService occur error,method is : "
+				+ "getUsabelAmount(String userId)");
+		return new Message<String>(MsgCode.Hystrix_FAIL.value, MsgCode.Hystrix_FAIL.alias);
+
+	}
+
+}
+
+
+
+	
+]]></content>
+	<tabTrigger>sp-ipc-feign</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

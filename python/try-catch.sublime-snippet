@@ -1,0 +1,25 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+
+
+		try:
+			${1}
+		except ${2}, e:
+			${3}
+	
+
+
+
+	
+]]></content>
+	<tabTrigger>try-catch</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	

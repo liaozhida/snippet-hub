@@ -1,0 +1,33 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+
+
+def dirCb(self,dirname):
+	
+	for line in os.listdir(dirname):
+		
+		filename = os.path.abspath(os.path.join(dirname, line))
+		if (os.path.isdir(filename)):
+			self.dirCb(filename)
+		else:
+			pattern = re.compile(r"(\d+)-(\d+)-(\d+)-(.{0,}.md)")
+			result = pattern.findall(filename)
+			if (len(result) != 0):
+				print filename
+	
+
+
+
+	
+]]></content>
+	<tabTrigger>file-dir-loop</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	

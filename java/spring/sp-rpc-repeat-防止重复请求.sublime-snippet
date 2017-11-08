@@ -1,0 +1,79 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+
+import javax.annotation.Resource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author zhidaliao
+ * 
+ *         调用方法前查看是否已经发起过
+ */
+@Service
+public class InvokerKeyService {
+
+	private static final Logger logger = LoggerFactory.getLogger(InvokerKeyService.class);
+
+	@Resource(name = "redisTemplate")
+	private ValueOperations<String, String> redisString;
+
+	/**
+	 * 方法是否可以调用
+	 * 
+	 * @author zhidaliao
+	 * @param key
+	 * @return remove false代表第一次加锁 true代表释放锁
+	 */
+	public boolean atomProcessor(String key, boolean remove) {
+
+		if (!remove) {
+			boolean flag = true;
+			try {
+
+				// 使用redis内部锁，并且为了意外退出，对键进行超时设置
+				flag = redisString.setIfAbsent(key, "true");
+				// redisString.getOperations().expire(key, 90,
+				// TimeUnit.SECONDS);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				logger.error(e.getMessage());
+				flag = false;
+			}
+
+			if (!flag) {
+				logger.debug("atomProcessor false key:" + key);
+			}
+
+			return flag;
+		} else {
+			redisString.getOperations().delete(key);
+			return true;
+		}
+
+	}
+
+}
+
+
+
+
+
+	
+]]></content>
+	<tabTrigger>sp-rpc-repeat</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	
+

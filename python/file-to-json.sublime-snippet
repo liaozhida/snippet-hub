@@ -1,0 +1,25 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+
+
+## 加载配置文件返回json格式数据
+def loadConfigfile(self):
+	currentProject = os.path.dirname(sys.path[0])
+	configStr = os.path.abspath(os.path.join(currentProject, 'config.json'))
+	data_file = open(configStr)
+	return json.load(data_file)
+
+
+	
+]]></content>
+	<tabTrigger>file-to-json</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	

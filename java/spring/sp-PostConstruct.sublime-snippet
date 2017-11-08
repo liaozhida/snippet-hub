@@ -1,0 +1,25 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+ 
+class ${1} implements BeanFactoryPostProcessor {
+
+}
+
+
+<!-- @PostConstruct -->
+
+
+
+
+	
+]]></content>
+	<tabTrigger>sp-PostConstruct</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

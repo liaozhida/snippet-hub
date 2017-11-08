@@ -1,0 +1,19 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+// 相互转换
+File file = dir2.toFile();
+Path filePath = file.toPath();
+ 
+
+	
+]]></content>
+	<tabTrigger>file-to-path</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

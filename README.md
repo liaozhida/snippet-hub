@@ -1,5 +1,7 @@
 # sublime-snippet
 
+## 使用步骤
+
 sublime的代码片段工具
 
 1. 安装(OSX + sublime text 2)
@@ -42,3 +44,11 @@ sublime的代码片段工具
 	* 你可以在该项目的 [Issues](http://gitlab.umiit.cn/tool/sublime-snippet/issues) 中new issues,写清楚相关需求
 	* 将该项目clone到本地，然后新建一个分支，分支名为[issues的编号-snippet的名称]，然后编写代码，将该分支推送到服务器
 	* 等待合并到master中
+
+## scope 列表
+
+[Here is a list of scopes to use in Sublime Text 2 snippets](https://gist.github.com/tushortz/1288d593ca2bf1593182)
+
+## 常见问题
+
+- 定义了scope 为 xml 的 snippet, 然后在 xml格式的文本中输入关键字无效。 解决方案为： 先输入 `<` ，再按 `Tab`

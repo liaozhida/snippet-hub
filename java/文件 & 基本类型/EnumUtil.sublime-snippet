@@ -1,0 +1,93 @@
+
+<snippet>
+	<content><![CDATA[
+ 
+
+ 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
+public class EnumUtil {
+
+	public static <T> String getEnumAlias(Class<T> ref, Object i) {
+		if (ref.isEnum()) {
+			T[] ts = ref.getEnumConstants();
+			for (T t : ts) {
+				try {
+					Field f = t.getClass().getField("value");
+					if (i.toString().equals(f.get(t).toString())) {
+						return t.getClass().getField("alias").get(t).toString();
+					}
+				} catch (NoSuchFieldException | SecurityException
+						| IllegalArgumentException | IllegalAccessException e) {
+					return "";
+				}
+
+			}
+		}
+		return "";
+	}
+	
+	public static <T> List<String> getEnumAliasList(Class<T> ref) {
+		List<String> lists = new ArrayList<String>();
+		if (ref.isEnum()) {
+			T[] ts = ref.getEnumConstants();
+			for (T t : ts) {
+				try {
+					Field f = t.getClass().getField("value");
+					lists.add(t.getClass().getField("alias").get(t).toString());
+				} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
+			return lists;
+		}
+		return lists;
+	}
+	
+	public static <T> List<String> getEnumValueList(Class<T> ref) {
+		List<String> lists = new ArrayList<String>();
+		if (ref.isEnum()) {
+			T[] ts = ref.getEnumConstants();
+			for (T t : ts) {
+				try {
+					Field f = t.getClass().getField("value");
+					lists.add(f.get(t).toString());
+				} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
+			return lists;
+		}
+		return lists;
+	}
+	
+	public static <T> LinkedHashMap<String,String> getEnumMap(Class<T> ref) {
+		LinkedHashMap<String,String> map = new LinkedHashMap<String,String>();
+		if (ref.isEnum()) {
+			T[] ts = ref.getEnumConstants();
+			for (T t : ts) {
+				try {
+					String alias = t.getClass().getField("alias").get(t).toString();
+					String value = t.getClass().getField("value").get(t).toString();
+					map.put(alias, value);
+				} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
+			return map;
+		}
+		return map;
+	}
+
+}
+
+
+	
+]]></content>
+	<tabTrigger>enum-utils</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+

@@ -1,0 +1,21 @@
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+FROM java:7
+VOLUME /tmp
+ADD ${1}*.jar /${2}.jar
+RUN bash -c 'touch /${3}.jar'
+EXPOSE 8081
+ENTRYPOINT ["java","-jar","/${4}.jar"]
+
+
+	
+]]></content>
+	<tabTrigger>docker-run-jar</tabTrigger>
+</snippet>
+
+	
+

@@ -1,0 +1,19 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+response = requests.get(imageurl, stream=True)
+with open('${1}', 'wb') as f:
+    f.write(response.content)
+    f.close
+    del response
+
+	
+]]></content>
+	<tabTrigger>net-img-down</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	

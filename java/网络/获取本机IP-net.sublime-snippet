@@ -1,0 +1,80 @@
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+
+package cn.yeamoney.utils;
+
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
+
+import ch.qos.logback.classic.pattern.ClassicConverter;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+
+/**
+ * logback 日志自定义IP转换器
+ * 
+ * @author zarek.wu
+ *
+ */
+public class IpConvert extends ClassicConverter {
+
+	@Override
+	public String convert(ILoggingEvent event) {
+		InetAddress ia = null;
+		String localip = "127.0.0.1";
+		boolean a = true;
+		try {
+			Enumeration allNetInterfaces = NetworkInterface.getNetworkInterfaces();
+			InetAddress ip = null;
+			while (allNetInterfaces.hasMoreElements()) {
+				NetworkInterface netInterface = (NetworkInterface) allNetInterfaces.nextElement();
+				if (netInterface.getName().startsWith("e")) {
+					Enumeration addresses = netInterface.getInetAddresses();
+					if ("eth1".equals(netInterface.getName())) {
+						while (addresses.hasMoreElements()) {
+							ip = (InetAddress) addresses.nextElement();
+							if (ip != null && ip instanceof Inet4Address) {
+								localip = ip.getHostAddress();
+								return localip;
+							}
+						}
+					}else{
+						while (addresses.hasMoreElements()) {
+							ip = (InetAddress) addresses.nextElement();
+							if (ip != null && ip instanceof Inet4Address  && a) {
+								localip = ip.getHostAddress();
+								a = false;
+							}
+						}
+					}
+				}
+
+			}
+			return localip;
+		} catch (SocketException e) {
+			e.printStackTrace();
+			return localip;
+		}
+	}
+}
+
+
+
+
+
+	
+]]></content>
+	<tabTrigger>net-localIP</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

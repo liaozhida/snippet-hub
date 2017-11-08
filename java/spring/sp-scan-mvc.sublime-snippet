@@ -1,0 +1,13 @@
+
+<snippet>
+	<content><![CDATA[
+
+	<context:component-scan base-package="${1}*">
+	</context:component-scan>
+	
+]]></content>
+	<tabTrigger>sp-scan-mvc</tabTrigger>
+	<scope>text.xml</scope>
+</snippet>
+
+	

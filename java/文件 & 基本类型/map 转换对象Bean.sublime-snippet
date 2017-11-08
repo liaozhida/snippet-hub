@@ -1,0 +1,27 @@
+<snippet>
+	<content><![CDATA[
+
+import org.apache.commons.beanutils.BeanUtils;
+
+
+/**map 转换对象Bean
+ * @param map
+ * @param obj
+ */
+public static void mapToBean(Map<String, String> map, Object obj) {
+	if (map == null || obj == null) {
+		return;
+	}
+	try {
+		BeanUtils.populate(obj, map);
+	} catch (Exception e) {
+		System.out.println("transMap2Bean2 Error " + e);
+	}
+}
+	
+]]></content>
+	<tabTrigger>mapToBean</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

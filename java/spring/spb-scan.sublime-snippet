@@ -1,0 +1,20 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+@ComponentScan({"${1}.*","${2}.*"})
+
+
+
+
+	
+]]></content>
+	<tabTrigger>spb-scan</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

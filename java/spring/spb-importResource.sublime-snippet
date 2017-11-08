@@ -1,0 +1,26 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+
+@Configuration
+@ImportResource(locations={"classpath:context/${1}.xml","classpath:context/${2}.xml"})
+public class ConfigClass {
+	
+}
+
+
+
+
+	
+]]></content>
+	<tabTrigger>spb-importResource</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	
+

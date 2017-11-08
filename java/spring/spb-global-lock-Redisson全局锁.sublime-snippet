@@ -1,0 +1,152 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
+import org.redisson.config.SentinelServersConfig;
+import org.redisson.config.SingleServerConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@AutoConfigureAfter(RedisAutoConfiguration.class)
+public class RedissonAutoConfiguration {
+
+	@Autowired
+	private RedisProperties redisProperties;
+
+	@Bean
+	public RedissonClient redissonClient() {
+
+		Config config = new Config();
+
+		// sentinel
+		if (redisProperties.getSentinel() != null) {
+
+			SentinelServersConfig sentinelServersConfig = config.useSentinelServers();
+			sentinelServersConfig.setMasterName(redisProperties.getSentinel().getMaster());
+			redisProperties.getSentinel().getNodes();
+			sentinelServersConfig.addSentinelAddress(redisProperties.getSentinel().getNodes().split(","));
+			sentinelServersConfig.setDatabase(redisProperties.getDatabase());
+			if (redisProperties.getPassword() != null) {
+				sentinelServersConfig.setPassword(redisProperties.getPassword());
+			}
+
+		} else {
+
+			// single server
+			SingleServerConfig singleServerConfig = config.useSingleServer();
+			// format as redis://127.0.0.1:7181 or rediss://127.0.0.1:7181 for
+			// SSL
+			String schema = redisProperties.isSsl() ? "rediss://" : "redis://";
+			singleServerConfig.setConnectionMinimumIdleSize(5);
+			singleServerConfig.setConnectionPoolSize(50);
+			singleServerConfig.setAddress(schema + redisProperties.getHost() + ":" + redisProperties.getPort());
+			singleServerConfig.setDatabase(redisProperties.getDatabase());
+			if (redisProperties.getPassword() != null) {
+				singleServerConfig.setPassword(redisProperties.getPassword());
+			}
+		}
+
+		return Redisson.create(config);
+	}
+}
+
+
+
+
+
+
+
+import java.util.concurrent.TimeUnit;
+
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author zhidaliao 全局锁类
+ */
+@Service
+public class GlobalLock {
+
+	@Autowired
+	private RedissonClient redissonClient;
+
+	private static final Logger logger = LoggerFactory.getLogger(GlobalLock.class);
+
+	private final int tryTime = 60;
+	private final int unLockTime = 40;
+
+	/**
+	 * 是否释放锁 ，否则就加锁
+	 * 
+	 * @param key
+	 * @param flag
+	 * @return
+	 */
+	public boolean unlockOrNot(String key, boolean flag) {
+
+		RLock fairLock = redissonClient.getFairLock(key);
+
+		boolean result = false;
+
+		// 加锁
+		if (!flag) {
+
+			logger.debug("start Get lock ~");
+
+
+			try {
+				fairLock.lock(unLockTime, TimeUnit.SECONDS);
+				result = fairLock.tryLock(tryTime, unLockTime, TimeUnit.SECONDS);
+				if (result) {
+					logger.debug("get " + key + " succ");
+				} else {
+					logger.debug("get " + key + " fail");
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				logger.error(e.getMessage());
+			}
+
+		}
+
+		// 释放锁
+		else {
+
+			fairLock.forceUnlock();
+			logger.debug("release " + key + " succ");
+			result = true;
+		}
+
+		return result;
+	}
+}
+
+
+
+
+
+	
+]]></content>
+	<tabTrigger>spb-global-lock</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	
+

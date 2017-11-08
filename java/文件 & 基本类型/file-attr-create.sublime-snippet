@@ -1,0 +1,36 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+
+
+
+
+Path profile = Paths.get("/Users/zhidaliao/foo4.log");
+
+if (!profile.toFile().exists()) {
+
+	Set<PosixFilePermission> posixPermissions = PosixFilePermissions.fromString("rwxrwxrwx");
+	FileAttribute<Set<PosixFilePermission>> fa = PosixFilePermissions.asFileAttribute(posixPermissions);
+	Path p = Files.createFile(profile, fa);
+	System.out.println("Done ! ");
+
+}
+
+
+
+
+
+
+
+	
+]]></content>
+	<tabTrigger>file-attr-create</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

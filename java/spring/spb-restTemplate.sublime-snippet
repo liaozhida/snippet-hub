@@ -1,0 +1,23 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+ 
+@Bean
+public RestTemplate restTemplate() {
+	return new RestTemplate();
+}
+
+
+
+
+	
+]]></content>
+	<tabTrigger>spb-restTemplate</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

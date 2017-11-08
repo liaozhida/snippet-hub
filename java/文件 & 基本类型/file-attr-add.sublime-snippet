@@ -1,0 +1,48 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+
+
+
+
+try {
+	Path profile = Paths.get("/Users/zhidaliao/foo.log");
+
+	PosixFileAttributes attrs = Files.readAttributes(profile, PosixFileAttributes.class);
+
+	Set<PosixFilePermission> posixPermissions = attrs.permissions();
+	posixPermissions.clear();
+
+	String owner = attrs.owner().getName();
+	String perms = PosixFilePermissions.toString(posixPermissions);
+	System.out.format("%s %s%n", owner, perms);
+
+	posixPermissions.add(OWNER_READ);
+	posixPermissions.add(GROUP_READ);
+	posixPermissions.add(OWNER_EXECUTE);
+	posixPermissions.add(OWNER_WRITE);
+	Files.setPosixFilePermissions(profile, posixPermissions);
+
+} catch (IOException e) {
+	System.out.println(e.getMessage());
+}
+
+
+
+
+
+
+
+
+	
+]]></content>
+	<tabTrigger>file-attr-add</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

@@ -1,0 +1,22 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+	// 计算两个文件的路径比较
+	Path dir2 = Paths.get("/Users/zhidaliao/foo.log");
+	Path dir3 = Paths.get("/Users/zhidaliao/git/jira_erp");
+	Path rela = dir2.relativize(dir3);
+	System.out.println(rela);
+
+ 
+
+	
+]]></content>
+	<tabTrigger>file-dir-compare</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

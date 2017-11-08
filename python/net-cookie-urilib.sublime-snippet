@@ -1,0 +1,36 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+
+
+def post():
+
+	cookieStr = cookiePorter.porter("https://segmentfault.com/");
+
+	header = {
+		'Referer':'https://segmentfault.com/a/1190000002507299',
+		'Host':'segmentfault.com',
+		'Cookie':cookieStr,
+		'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'
+	}
+
+	login_data = urllib.urlencode({
+	                        "username": '422351001@qq.com',
+	                        "password": '*',
+	                        "remember": 1});
+
+	cooker = cookielib.CookieJar()  
+	opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cooker))  
+	urllib2.install_opener(opener)  
+	response = urllib2.urlopen(home_url).read();	
+
+	
+]]></content>
+	<tabTrigger>net-cookie-urilib</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	

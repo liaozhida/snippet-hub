@@ -1,0 +1,30 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+
+
+
+// pip install markdown
+// pip install importlib
+
+
+
+input_file = codecs.open(in_file, mode="r", encoding="utf-8")
+text = input_file.read()
+html = markdown.markdown(text)
+
+
+
+
+	
+]]></content>
+	<tabTrigger>md-to-html</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	

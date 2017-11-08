@@ -1,0 +1,48 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+ 
+
+
+
+
+/**
+ * 链接文件
+ * 
+ * @throws IOException
+ */
+static void link() throws IOException {
+
+	Path profile = Paths.get("/Users/zhidaliao/link.log.link").toAbsolutePath();
+	System.out.println(Files.isSymbolicLink(profile));
+
+	// 虽然读取到了源文件 但是文件目录已经被修改
+	if (Files.isSymbolicLink(profile)) {
+		profile = Files.readSymbolicLink(profile);
+		System.out.println(profile.getFileName());
+		System.out.println(profile.toUri());
+
+		// 转换成正常的目录
+		Path parentPath = Paths.get("/Users/zhidaliao");
+		profile = profile.getFileName();
+		profile = parentPath.resolve(profile);
+		System.out.println(profile.toUri());
+	}
+
+	BasicFileAttributes basic = Files.readAttributes(profile, BasicFileAttributes.class, LinkOption.NOFOLLOW_LINKS);
+	System.out.println(basic.isSymbolicLink());
+}
+
+
+
+
+	
+]]></content>
+	<tabTrigger>file-attr-link</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

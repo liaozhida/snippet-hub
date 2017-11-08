@@ -1,0 +1,53 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+ 
+
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+
+import com.java7developer.extras.CurrentPath;
+
+/**
+ * @author zhidaliao
+ *
+ *         读取文件最后一个1000个字符
+ * 
+ *         FileChannel 是 SeekableByteChannel 实现类；
+ *         SeekableByteChannel接口改变字节通道位置和大小
+ */
+public class List_2_4_6_Seekable {
+
+	public static void main(String[] args) throws IOException {
+
+		String str = CurrentPath.cur() + "IO/foo.log";
+
+		Path log = Paths.get(str);
+		ByteBuffer bb = ByteBuffer.allocate(1024);
+		FileChannel fc = FileChannel.open(log, StandardOpenOption.READ);
+		fc.read(bb, fc.size() - 1000);
+
+		String v = new String(bb.array());
+		System.out.println(v);
+
+	}
+}
+
+
+
+
+	
+]]></content>
+	<tabTrigger>file-seekable</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

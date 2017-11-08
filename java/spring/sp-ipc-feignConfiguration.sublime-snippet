@@ -1,0 +1,44 @@
+
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import feign.Logger;
+import feign.Request;
+
+@Configuration
+public class YeaFeignConfiguration {
+
+	public static final int CONNECT_TIMEOUT_MILLIS = 5000;
+	public static final int READ_TIMEOUT_MILLIS = 15000;
+
+	@Bean
+	public Logger.Level feignLogger() {
+		return Logger.Level.FULL;
+	}
+
+	@Bean
+	public Request.Options options() {
+		return new Request.Options(CONNECT_TIMEOUT_MILLIS, READ_TIMEOUT_MILLIS);
+	}
+	
+	
+}
+
+
+
+
+
+	
+]]></content>
+	<tabTrigger>sp-ipc-feignConfiguration</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	

@@ -1,0 +1,47 @@
+
+<snippet>
+	<content><![CDATA[
+ 
+
+
+
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+/**
+ * @author liaozhida
+ * 
+ */
+public class PropertiesUtil {
+	
+	public static Properties load(String path) {
+		Properties properties = null;
+		try {
+			File file = new File(path);
+			InputStream in = new FileInputStream(file.getPath());
+			properties = new Properties();
+			properties.load(in);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return properties;
+	}
+}
+
+
+
+
+
+	
+]]></content>
+	<tabTrigger>file-PropertiesUtil</tabTrigger>
+	<scope>source.java</scope>
+</snippet>
+
+	
+

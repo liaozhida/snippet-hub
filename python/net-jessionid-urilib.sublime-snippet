@@ -1,0 +1,29 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+
+
+
+	try:
+		
+		response = urllib2.urlopen(request,context=gcontext) 
+		headers = response.info()  
+		jession_id = str(headers).partition('JSESSIONID')[2].partition(';')[0].lstrip().rstrip();
+		jession_id = jession_id[1:len(jession_id)]
+		print jession_id
+
+	except urllib2.HTTPError,e:
+			print '-----' + str((e.getcode()))
+			print '-----' + str(e.reason)
+
+
+	
+]]></content>
+	<tabTrigger>net-jessionid-urilib</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	

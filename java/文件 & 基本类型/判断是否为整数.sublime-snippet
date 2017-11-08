@@ -1,0 +1,19 @@
+
+<snippet>
+	<content><![CDATA[
+ 
+
+	/** 判断是否为整数
+	 * @param bd
+	 * @return
+	 */
+	public static boolean isIntegerValue(BigDecimal bd) {
+	  return bd.signum() == 0 || bd.scale() <= 0 || bd.stripTrailingZeros().scale() <= 0;
+	}
+
+
+	
+]]></content>
+	<tabTrigger>num-isInteger</tabTrigger>
+	<scope>source.java</scope>
+</snippet>

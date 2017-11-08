@@ -1,0 +1,25 @@
+
+
+<snippet>
+	<content><![CDATA[
+
+
+res = ''
+while (res == ''):
+	try:
+		${1}
+	except ${2}, e:
+		${3}
+	except requests.exceptions.ConnectionError:
+		time.sleep(2)
+		continue
+
+
+
+	
+]]></content>
+	<tabTrigger>while-continue</tabTrigger>
+	<scope>source.python</scope>
+</snippet>
+
+	
